@@ -10,14 +10,14 @@ import {
 } from "@shopify/polaris";
 
 import trophyImgUrl from "../assets/home-trophy.png";
-
 import { ProductsCard } from "./ProductsCard";
+import { Products } from "./Products";
 
 export function HomePage() {
   return (
     <Page fullWidth>
       <Layout>
-        <Layout.Section>
+        {/* <Layout.Section>
           <Card sectioned>
             <Stack
               wrap={false}
@@ -27,7 +27,7 @@ export function HomePage() {
             >
               <Stack.Item fill>
                 <TextContainer spacing="loose">
-                  <Heading>Nice work on building a Shopify app 🎉</Heading>
+                  <Heading>Ayush 🎉</Heading>
                   <p>
                     Your app is ready to explore! It contains everything you
                     need to get started including the{" "}
@@ -48,8 +48,8 @@ export function HomePage() {
                     UI library and components.
                   </p>
                   <p>
-                    Ready to go? Start populating your app with some sample
-                    products to view and test in your store.{" "}
+                    Ready to go Ayush? Start populating your app with some
+                    sample products to view and test in your store.{" "}
                   </p>
                   <p>
                     Learn more about building out your app in{" "}
@@ -77,6 +77,9 @@ export function HomePage() {
         </Layout.Section>
         <Layout.Section secondary>
           <ProductsCard />
+        </Layout.Section> */}
+        <Layout.Section>
+          <Products />
         </Layout.Section>
       </Layout>
     </Page>
