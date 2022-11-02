@@ -33,6 +33,7 @@ export function Product({ product }) {
               fontFamily: "Poppins",
               lineHeight: "28px",
             }}
+            contenteditable="true"
           >
             {product.name}
           </span>
