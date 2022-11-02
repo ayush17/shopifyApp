@@ -1,34 +1,50 @@
 import { useEffect, useState, useCallback } from "react";
-import {
-  Card,
-  Heading,
-  TextContainer,
-  DisplayText,
-  TextStyle,
-  Image,
-  Stack,
-} from "@shopify/polaris";
+import { Card, TextContainer, Image, Stack } from "@shopify/polaris";
+import Carousel from "react-elastic-carousel";
 import { useAppBridge } from "@shopify/app-bridge-react";
-import { gql } from "@apollo/client";
-
-import { userLoggedInFetch } from "../App";
 import rectangle from "../assets/Rectangle 21.png";
 import carry from "../assets/carry.png";
 import cushion_covers from "../assets/cushion_covers.png";
-
-const PRODUCTS_QUERY = gql`
-  mutation populateProduct($input: ProductInput!) {
-    productCreate(input: $input) {
-      product {
-        title
-      }
-    }
-  }
-`;
-
+import { Product } from "./Product";
+const breakPoints = [
+  { width: 1, itemsToShow: 1 },
+  { width: 420, itemsToShow: 2 },
+  { width: 840, itemsToShow: 3 },
+];
+const staticData = [
+  {
+    name: "THE WOVEN PICNIC RUG & THROW COLLECTION",
+    imageURL: rectangle,
+    startingPrice: "109$",
+  },
+  {
+    name: "Cotton Carry Strap",
+    imageURL: carry,
+    startingPrice: "109$",
+  },
+  {
+    name: "Cushion Covers",
+    imageURL: cushion_covers,
+    startingPrice: "109$",
+  },
+  {
+    name: "THE WOVEN PICNIC RUG & THROW COLLECTION",
+    imageURL: rectangle,
+    startingPrice: "109$",
+  },
+  {
+    name: "Cotton Carry Strap",
+    imageURL: carry,
+    startingPrice: "109$",
+  },
+  {
+    name: "Cushion Covers",
+    imageURL: cushion_covers,
+    startingPrice: "109$",
+  },
+];
 export function Products() {
   const app = useAppBridge();
-  const fetch = userLoggedInFetch(app);
   return (
     <>
       <Card title="Browse our collections" sectioned>
@@ -37,40 +53,16 @@ export function Products() {
             Our woven floor cushions are a great accesories to any space.
           </p>
         </TextContainer>
-        <Stack
-          wrap={false}
-          spacing="extraTight"
-          //   distribution="trailing"
-          alignment="center"
-        >
-          <Stack.Item>
-            <div style={{ marginLeft: "20px" }}>
-              <Image
-                source={rectangle}
-                alt="Nice work on building a Shopify app"
-                width={420}
-              />
-            </div>
-          </Stack.Item>
-          <Stack.Item>
-            <div style={{ marginLeft: "20px" }}>
-              <Image
-                source={carry}
-                alt="Nice work on building a Shopify app"
-                width={420}
-              />
-            </div>
-          </Stack.Item>
-          <Stack.Item>
-            <div style={{ marginLeft: "20px" }}>
-              <Image
-                source={cushion_covers}
-                alt="Nice work on building a Shopify app"
-                width={420}
-              />
-            </div>
-          </Stack.Item>
-        </Stack>
+
+        {staticData.length > 3 ? (
+          <Carousel breakPoints={breakPoints}>
+            {staticData.map((product) => (
+              <Product product={product} />
+            ))}
+          </Carousel>
+        ) : (
+          <Product product={product} />
+        )}
       </Card>
     </>
   );
